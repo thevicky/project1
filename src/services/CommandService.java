@@ -96,15 +96,25 @@ public class CommandService {
 	}
 	
 	private void showSlotNumbers(List<Vehicle> vehicles){
+		boolean flag = false;
 		for (Vehicle vehicle : vehicles) {
-			System.out.print(vehicle.getParkingSpaceId() + ", " );
+			if(flag){
+				System.out.print(", ");
+			}
+			System.out.print(vehicle.getParkingSpaceId());
+			flag = true;
 		}
 		System.out.println();
 	}
 	
 	private void showRegistrationNumbers(List<Vehicle> vehicles){
+		boolean flag = false;
 		for (Vehicle vehicle : vehicles) {
-			System.out.print(vehicle.getVehicleNo() + ", " );
+			if(flag){
+				System.out.print(", ");
+			}
+			System.out.print(vehicle.getVehicleNo());
+			flag = true;
 		}
 		System.out.println();
 	}
