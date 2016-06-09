@@ -10,10 +10,12 @@ public class ParkingLot {
 	private Integer maxSpace;
 	private HashMap<Integer,Vehicle> vehicles = new HashMap<Integer, Vehicle>();
 	private Set<Integer> emptySpaces = new HashSet<Integer>();
-
+	
+	private static ParkingLot parkingLot = null;
+	
 	public ParkingLot(Integer space) {
-		this.maxSpace = space - 1;
-		for (int i = 0; i < maxSpace; i++) {
+		this.maxSpace = space;
+		for (int i = 1; i <= maxSpace; i++) {
 			emptySpaces.add(i);
 		}
 	}
@@ -57,6 +59,8 @@ public class ParkingLot {
 			return -1;
 		}else{
 			Integer newLotId = emptySpaces.iterator().next();
+			System.out.println(">>>" + newLotId);
+			vehicle.setParkingSpaceId(newLotId);
 			vehicles.put(newLotId, vehicle);
 			emptySpaces.remove(newLotId);
 			return newLotId;
@@ -64,12 +68,27 @@ public class ParkingLot {
 	}
 	
 	public boolean removeVehicleFromParking(Integer id){
-		if(id > maxSpace || id < 0){
+		if(id > maxSpace || id <= 0){
 			return false;
 		}else{
 			vehicles.remove(id);
 			emptySpaces.add(id);
 			return true;
 		}
+	}
+	
+	public static ParkingLot getInstance(Integer space){
+		if(parkingLot == null){
+			parkingLot = new ParkingLot(space);
+		}
+		return parkingLot;
+	}
+	
+	public List<Vehicle> getAllVehicles() {
+		List<Vehicle> v = new ArrayList<Vehicle>();
+		for (Vehicle vehicle : vehicles.values()) {
+			v.add(vehicle);
+		}
+		return v;
 	}
 }
