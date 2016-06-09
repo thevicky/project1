@@ -35,7 +35,7 @@ public class CommandService {
 			Vehicle vehicle = new Vehicle(commandArray[1],commandArray[2]);
 			Integer p = parkingLot.addVehicleToParking(vehicle);
 			if(p != -1){
-				System.out.println("Allocated slot number: " + p + vehicle.getVehicleNo());
+				System.out.println("Allocated slot number: " + p );
 			}else{
 				return ErrorCode.PARKING_FULL;
 			}

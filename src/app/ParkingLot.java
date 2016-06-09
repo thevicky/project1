@@ -59,7 +59,6 @@ public class ParkingLot {
 			return -1;
 		}else{
 			Integer newLotId = emptySpaces.iterator().next();
-			System.out.println(">>>" + newLotId);
 			vehicle.setParkingSpaceId(newLotId);
 			vehicles.put(newLotId, vehicle);
 			emptySpaces.remove(newLotId);
